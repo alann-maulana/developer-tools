@@ -24,7 +24,7 @@ jobs:
             - name: "Install flutter packages"
               run: flutter packages get
             - name: "Build flutter web"
-              run: flutter build web --release -v
+              run: flutter build web --release --base-href /developer-tools/ -v
             - name: "Deploy to gh-pages 🚀"
               uses: JamesIves/github-pages-deploy-action@4.1.5
               with:
