@@ -25,25 +25,8 @@ jobs:
               run: flutter packages get
             - name: "Build flutter web"
               run: flutter build web --release -v
-            - name: "Upload build/web"
-              uses: actions/upload-artifact@v2
-              with:
-                  name: developer-tools
-                  path: build/web
-                  retention-days: 7
-
-    deploy:
-        name: Deploy to Netlify
-        needs: build-web
-        runs-on: ubuntu-latest
-        steps:
-            - name: "Download build/web 🔰"
-              uses: actions/download-artifact@v2
-              with:
-                  name: developer-tools
-                  path: build/web
             - name: "Deploy to gh-pages 🚀"
               uses: JamesIves/github-pages-deploy-action@4.1.5
               with:
-                branch: gh-pages
-                folder: build/web
+                  branch: gh-pages
+                  folder: build/web
