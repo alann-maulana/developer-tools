@@ -1,0 +1,14 @@
+{
+  "appTitle": "Developer Tools",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "hashGeneratorSideMenu": "Hash Generator",
+  "@hashGeneratorSideMenu": {
+    "description": "The hash generator from string or file"
+  },
+  "base64EncoderDecoderSideMenu": "Base64 Encoder/Decoder",
+  "@base64EncoderDecoderSideMenu": {
+    "description": "The string encoder or decoder functions"
+  }
+}
