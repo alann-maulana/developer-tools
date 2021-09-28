@@ -3,6 +3,7 @@ import 'package:developer_tools/src/dashboard/dashboard_view.dart';
 import 'package:flutter/material.dart';
 
 import 'base64/base64_view.dart';
+import 'blurhash/blur_hash_view.dart';
 
 class AppRoutes {
   static Map<String, WidgetBuilder> get routes {
@@ -37,6 +38,10 @@ class AppRoutes {
         break;
       case Base64View.route:
         builder = (context) => Base64View();
+        disableAnimation = true;
+        break;
+      case BlurHashView.route:
+        builder = (context) => BlurHashView();
         disableAnimation = true;
         break;
     }

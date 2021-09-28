@@ -14,11 +14,15 @@ class DashboardView extends StatelessWidget {
       drawer: const DrawerMenu(),
       body: Column(
         mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           FlutterLogo(size: 96),
           SizedBox(height: 16),
-          Text('Select a tools on the left side'),
+          Text(
+            'Select a tools on the left side',
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

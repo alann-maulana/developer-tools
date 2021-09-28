@@ -4,6 +4,7 @@ import 'package:developer_tools/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../blurhash/blur_hash_view.dart';
 import 'drawer_menu_header.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -19,6 +20,8 @@ class DrawerMenu extends StatelessWidget {
       child: Column(
         children: [
           const DrawerMenuHeader(),
+          separator,
+          divider,
           DrawerMenuTile(
             leading: Icons.enhanced_encryption_outlined,
             title: AppLocalizations.of(context)!.hashGeneratorSideMenu,
@@ -37,6 +40,16 @@ class DrawerMenu extends StatelessWidget {
             },
           ),
           divider,
+          DrawerMenuTile(
+            leading: Icons.blur_circular_outlined,
+            title: AppLocalizations.of(context)!.blurHashEncoderDecoderSideMenu,
+            selected: currentRouteName == BlurHashView.route,
+            onTap: () {
+              Navigator.pushNamed(context, BlurHashView.route);
+            },
+          ),
+          divider,
+          separator,
           separator,
           divider,
           AnimatedBuilder(
