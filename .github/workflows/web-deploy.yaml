@@ -21,9 +21,9 @@ jobs:
               with:
                   flutter-version: '2.5.1'
                   channel: 'stable'
-            - name: "Install flutter packages"
+            - name: "Install flutter packages 🧩"
               run: flutter packages get
-            - name: "Build flutter web"
+            - name: "Build flutter web 🛠"
               run: flutter build web --release --base-href /developer-tools/ -v
             - name: "Deploy to gh-pages 🚀"
               uses: JamesIves/github-pages-deploy-action@4.1.5
