@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'base64/base64_view.dart';
 import 'blurhash/blur_hash_view.dart';
+import 'json/jsontodart_view.dart';
 
 class AppRoutes {
   static Map<String, WidgetBuilder> get routes {
@@ -42,6 +43,10 @@ class AppRoutes {
         break;
       case BlurHashView.route:
         builder = (context) => BlurHashView();
+        disableAnimation = true;
+        break;
+      case JsonToDartView.route:
+        builder = (context) => JsonToDartView();
         disableAnimation = true;
         break;
     }

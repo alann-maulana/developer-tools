@@ -1,5 +1,6 @@
 import 'package:developer_tools/src/base64/base64_view.dart';
 import 'package:developer_tools/src/cryptographic/hash_generator_view.dart';
+import 'package:developer_tools/src/json/jsontodart_view.dart';
 import 'package:developer_tools/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -46,6 +47,15 @@ class DrawerMenu extends StatelessWidget {
             selected: currentRouteName == BlurHashView.route,
             onTap: () {
               Navigator.pushNamed(context, BlurHashView.route);
+            },
+          ),
+          divider,
+          DrawerMenuTile(
+            leading: Icons.code,
+            title: AppLocalizations.of(context)!.jsonToDartSideMenu,
+            selected: currentRouteName == JsonToDartView.route,
+            onTap: () {
+              Navigator.pushNamed(context, JsonToDartView.route);
             },
           ),
           divider,
