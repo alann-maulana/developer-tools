@@ -1,7 +1,6 @@
+import 'package:developer_tools/src/app.dart';
+import 'package:developer_tools/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
-
-import 'src/app.dart';
-import 'src/settings/settings_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

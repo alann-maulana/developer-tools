@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/retry.dart';
 import 'package:image/image.dart' as img;
 
 enum BlurHashMode { encode, decode }
@@ -114,12 +116,14 @@ class BlurHashController extends ChangeNotifier {
     final uri = Uri.tryParse(input);
     if (uri != null) {
       _decodeMode = BlurHashDecode.decodeFromUrl;
-      NetworkAssetBundle(uri).load("").then((ByteData imageData) {
-        final bytes = imageData.buffer.asUint8List();
-        calculatedBytes(bytes);
+      final client = RetryClient(http.Client());
+      client.get(uri).then((http.Response response) {
+        calculatedBytes(response.bodyBytes);
         notifyListeners();
-      }, onError: (_) {
+      }, onError: (_, __) {
         notifyListeners();
+      }).whenComplete(() {
+        client.close();
       });
     }
   }
