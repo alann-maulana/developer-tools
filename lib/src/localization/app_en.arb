@@ -3,7 +3,10 @@
   "@appTitle": {
     "description": "The title of the application"
   },
-  "hashGeneratorSideMenu": "Hash Generator",
+  "shortAppTitle": "DevTools",
+  "@shortAppTitle": {
+    "description": "The short title of the application"
+  },"hashGeneratorSideMenu": "Hash Generator",
   "@hashGeneratorSideMenu": {
     "description": "The hash generator from string or file"
   },
