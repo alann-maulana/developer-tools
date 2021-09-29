@@ -319,7 +319,7 @@ packages:
     description:
       path: "."
       ref: null-safety
-      resolved-ref: f6d9e01fb283ad77575e945b986bdbd0df03d7b2
+      resolved-ref: ecb048c94beecc95f34d8314f7e9483b954281db
       url: "https://github.com/alann-maulana/json_to_dart"
     source: git
     version: "1.0.4"
