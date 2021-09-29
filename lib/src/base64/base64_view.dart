@@ -19,6 +19,8 @@ class Base64View extends StatelessWidget {
     return ResponsiveScaffold(
       title: Text(AppLocalizations.of(context)!.base64EncoderDecoderSideMenu),
       drawer: const DrawerMenu(),
+      appBarElevation: 0,
+      centerTitle: true,
       body: Base64Body(controller: controller),
     );
   }

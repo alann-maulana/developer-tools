@@ -22,6 +22,8 @@ class JsonToDartView extends StatelessWidget {
     return ResponsiveScaffold(
       title: Text(AppLocalizations.of(context)!.jsonToDartSideMenu),
       drawer: const DrawerMenu(),
+      appBarElevation: 0,
+      centerTitle: true,
       body: JsonToDartBody(controller: controller),
     );
   }

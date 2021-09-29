@@ -12,6 +12,8 @@ class DashboardView extends StatelessWidget {
     return ResponsiveScaffold(
       title: Text(AppLocalizations.of(context)!.appTitle),
       drawer: const DrawerMenu(),
+      appBarElevation: 0,
+      centerTitle: true,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -20,6 +20,8 @@ class BlurHashView extends StatelessWidget {
     return ResponsiveScaffold(
       title: Text(AppLocalizations.of(context)!.blurHashEncoderDecoderSideMenu),
       drawer: const DrawerMenu(),
+      appBarElevation: 0,
+      centerTitle: true,
       body: BlurHashBody(controller: controller),
     );
   }
