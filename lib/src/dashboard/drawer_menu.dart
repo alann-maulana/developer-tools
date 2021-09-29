@@ -17,10 +17,9 @@ class DrawerMenu extends StatelessWidget {
     const separator = SizedBox(height: 16);
     final currentRouteName = ModalRoute.of(context)!.settings.name;
 
-    return SingleChildScrollView(
+    final scroll = SingleChildScrollView(
       child: Column(
         children: [
-          const DrawerMenuHeader(),
           separator,
           divider,
           DrawerMenuTile(
@@ -73,7 +72,9 @@ class DrawerMenu extends StatelessWidget {
                         : const Icon(
                             Icons.system_security_update_good_outlined),
                 minLeadingWidth: 0,
-                dense: true,
+                tileColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : null,
                 title: const Text('Theme'),
                 trailing: DropdownButton<ThemeMode>(
                   value: settingsController.themeMode,
@@ -101,6 +102,24 @@ class DrawerMenu extends StatelessWidget {
         ],
       ),
     );
+
+    return Column(
+      children: [
+        const DrawerMenuHeader(),
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                right: BorderSide(
+                  color: Theme.of(context).dividerColor,
+                ),
+              ),
+            ),
+            child: scroll,
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -122,10 +141,16 @@ class DrawerMenuTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    final tileColor = isLight ? Colors.white : null;
+    final selectedTileColor =
+        Theme.of(context).primaryColor.withOpacity(isLight ? 0.1 : 0.5);
+
     return ListTile(
       leading: Icon(leading),
       minLeadingWidth: 0,
-      dense: true,
+      tileColor: tileColor,
+      selectedTileColor: selectedTileColor,
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle!) : null,
       selected: selected,
