@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = developer_tools
+PRODUCT_NAME = Developer Tools
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.github.developerTools
+PRODUCT_BUNDLE_IDENTIFIER = com.github.alann-maulana.developer-tools
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 com.github. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2021 Alann Maulana. All rights reserved.
