@@ -1,4 +1,5 @@
 import 'package:developer_tools/src/dashboard/drawer_menu.dart';
+import 'package:developer_tools/src/views/responsive_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_native/flutter_native.dart';
@@ -38,92 +39,113 @@ class Base64Body extends StatelessWidget {
       child: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
-          return Column(
-            children: [
-              Row(
-                children: [
-                  const Text('Input :'),
-                  const SizedBox(width: 8),
-                  ElevatedButton(
-                    onPressed: controller.onPaste,
-                    child: const Text('Clipboard'),
-                  ),
-                  const SizedBox(width: 8),
-                  OutlinedButton(
-                    onPressed: controller.clear,
-                    child: const Text('Clear'),
-                  ),
-                  const Spacer(),
-                  Radio<Base64Mode>(
-                    value: Base64Mode.encode,
-                    groupValue: controller.mode,
-                    onChanged: (value) {
-                      if (value != null) controller.mode = value;
-                    },
-                  ),
-                  const Text('Encode'),
-                  const SizedBox(width: 8),
-                  Radio<Base64Mode>(
-                    value: Base64Mode.decode,
-                    groupValue: controller.mode,
-                    onChanged: (value) {
-                      if (value != null) controller.mode = value;
-                    },
-                  ),
-                  const Text('Decode'),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Expanded(
-                child: TextField(
-                  controller: controller.inputController,
-                  maxLines: null,
-                  expands: true,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    errorText: controller.inputError,
-                  ),
-                  onChanged: controller.onInputChanged,
-                  textAlignVertical: TextAlignVertical.top,
+          final childrenInput = [
+            Row(
+              children: [
+                const Text('Input :'),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: controller.onPaste,
+                  child: const Text('Clipboard'),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  const Text('Output :'),
-                  const Spacer(),
-                  if (controller.mode == Base64Mode.encode)
-                    OutlinedButton.icon(
-                      onPressed: controller.useAsInput,
-                      label: const Text('Use as Input'),
-                      icon: const Icon(Icons.arrow_upward_outlined),
-                    ),
-                  if (controller.mode == Base64Mode.encode)
-                    const SizedBox(width: 8),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      await controller.onCopy();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Output copied')));
-                    },
-                    label: const Text('Copy'),
-                    icon: const Icon(Icons.copy),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Expanded(
-                child: TextField(
-                  controller: controller.outputController,
-                  maxLines: null,
-                  expands: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                  textAlignVertical: TextAlignVertical.top,
+                const SizedBox(width: 8),
+                OutlinedButton(
+                  onPressed: controller.clear,
+                  child: const Text('Clear'),
                 ),
+                const Spacer(),
+                Radio<Base64Mode>(
+                  value: Base64Mode.encode,
+                  groupValue: controller.mode,
+                  onChanged: (value) {
+                    if (value != null) controller.mode = value;
+                  },
+                ),
+                const Text('Encode'),
+                const SizedBox(width: 8),
+                Radio<Base64Mode>(
+                  value: Base64Mode.decode,
+                  groupValue: controller.mode,
+                  onChanged: (value) {
+                    if (value != null) controller.mode = value;
+                  },
+                ),
+                const Text('Decode'),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Expanded(
+              child: TextField(
+                controller: controller.inputController,
+                maxLines: null,
+                expands: true,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  errorText: controller.inputError,
+                ),
+                onChanged: controller.onInputChanged,
+                textAlignVertical: TextAlignVertical.top,
               ),
-            ],
+            ),
+          ];
+
+          final childrenOutput = [
+            Row(
+              children: [
+                const Text('Output :'),
+                const Spacer(),
+                if (controller.mode == Base64Mode.encode)
+                  OutlinedButton.icon(
+                    onPressed: controller.useAsInput,
+                    label: const Text('Use as Input'),
+                    icon: const Icon(Icons.arrow_upward_outlined),
+                  ),
+                if (controller.mode == Base64Mode.encode)
+                  const SizedBox(width: 8),
+                ElevatedButton.icon(
+                  onPressed: () async {
+                    await controller.onCopy();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Output copied')));
+                  },
+                  label: const Text('Copy'),
+                  icon: const Icon(Icons.copy),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Expanded(
+              child: TextField(
+                controller: controller.outputController,
+                maxLines: null,
+                expands: true,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                textAlignVertical: TextAlignVertical.top,
+              ),
+            ),
+          ];
+
+          return ResponsiveView(
+            builder: (context) {
+              return Column(
+                children: [
+                  ...childrenInput,
+                  const SizedBox(height: 16),
+                  ...childrenOutput,
+                ],
+              );
+            },
+            tablet: (context) {
+              return Row(
+                children: [
+                  Expanded(child: Column(children: childrenInput)),
+                  const VerticalDivider(width: 32),
+                  Expanded(child: Column(children: childrenOutput)),
+                ],
+              );
+            },
           );
         },
       ),
