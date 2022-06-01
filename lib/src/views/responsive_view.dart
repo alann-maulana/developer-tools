@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const double kTabletBreakpoint = 720.0;
-const double kDesktopBreakpoint = 1440.0;
+const double kDesktopBreakpoint = 1024.0;
 
 class ResponsiveView extends StatelessWidget {
   final double tabletBreakpoint;
@@ -20,6 +20,7 @@ class ResponsiveView extends StatelessWidget {
   }) : super(key: key);
 
   bool get _isDesktopBuilderSet => desktop != null;
+
   bool get _isTabletBuilderSet => tablet != null;
 
   @override

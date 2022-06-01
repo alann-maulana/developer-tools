@@ -6,7 +6,8 @@
   "shortAppTitle": "DevTools",
   "@shortAppTitle": {
     "description": "The short title of the application"
-  },"hashGeneratorSideMenu": "Hash Generator",
+  },
+  "hashGeneratorSideMenu": "Hash Generator",
   "@hashGeneratorSideMenu": {
     "description": "The hash generator from string or file"
   },
@@ -21,5 +22,9 @@
   "jsonToDartSideMenu": "JSON to Dart",
   "@jsonToDartSideMenu": {
     "description": "Convert JSON to Dart classes"
+  },
+  "googleDriveDDLSideMenu": "Direct Download Link Generator",
+  "@googleDriveDDLSideMenu": {
+    "description": "Generate Google Drive link to direct download link"
   }
 }

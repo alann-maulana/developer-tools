@@ -89,8 +89,8 @@ class JsonToDartBody extends StatelessWidget {
                       const CheckedPopupMenuItem(
                         value: 'private',
                         checked: true,
-                        child: Text('Null Safety'),
                         enabled: false,
+                        child: Text('Null Safety'),
                       ),
                     ];
                   },

@@ -9,6 +9,7 @@ import 'package:http/retry.dart';
 import 'package:image/image.dart' as img;
 
 enum BlurHashMode { encode, decode }
+
 enum BlurHashDecode {
   unknown,
   decodeFromFile,
@@ -45,7 +46,9 @@ class BlurHashController extends ChangeNotifier {
   String? inputError;
 
   BlurHashMode _mode;
+
   BlurHashMode get mode => _mode;
+
   set mode(BlurHashMode value) {
     if (value == mode) return;
 
@@ -61,12 +64,15 @@ class BlurHashController extends ChangeNotifier {
   }
 
   BlurHashDecode _decodeMode;
+
   BlurHashDecode get decodeMode => _decodeMode;
 
   ImageProvider? _imageInput;
+
   ImageProvider? get imageInput => _imageInput;
 
   ImageProvider? _imageOutput;
+
   ImageProvider? get imageOutput => _imageOutput;
 
   clear() {
@@ -102,7 +108,7 @@ class BlurHashController extends ChangeNotifier {
     }
 
     try {
-      final _ = base64.decode(input);
+      base64.decode(input);
       _decodeMode = BlurHashDecode.decodeFromBase64String;
     } catch (_) {}
 

@@ -1,7 +1,7 @@
 import 'package:developer_tools/src/views/responsive_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native/flutter_native.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_native/flutter_native.dart';
 
 import '../dashboard/drawer_menu.dart';
 import 'blurhash_controller.dart';

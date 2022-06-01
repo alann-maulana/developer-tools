@@ -1,9 +1,11 @@
 import 'package:developer_tools/src/base64/base64_view.dart';
 import 'package:developer_tools/src/cryptographic/hash_generator_view.dart';
+import 'package:developer_tools/src/directdownloadlink/googledrive_view.dart';
 import 'package:developer_tools/src/json/jsontodart_view.dart';
 import 'package:developer_tools/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../blurhash/blur_hash_view.dart';
 import 'drawer_menu_header.dart';
@@ -16,6 +18,7 @@ class DrawerMenu extends StatelessWidget {
     const divider = Divider(height: 0);
     const separator = SizedBox(height: 16);
     final currentRouteName = ModalRoute.of(context)!.settings.name;
+    final settingsController = context.read<SettingsController>();
 
     final scroll = SingleChildScrollView(
       child: Column(
@@ -58,16 +61,24 @@ class DrawerMenu extends StatelessWidget {
             },
           ),
           divider,
+          DrawerMenuTile(
+            leading: Icons.link_outlined,
+            title: AppLocalizations.of(context)!.googleDriveDDLSideMenu,
+            selected: currentRouteName == GooglDriveView.route,
+            onTap: () {
+              Navigator.pushNamed(context, GooglDriveView.route);
+            },
+          ),
+          divider,
           separator,
           separator,
           divider,
-          AnimatedBuilder(
-            animation: settingsController,
-            builder: (context, child) {
+          Selector<SettingsController, ThemeMode>(
+            builder: (context, themeMode, child) {
               return ListTile(
-                leading: settingsController.isDark
+                leading: themeMode == ThemeMode.dark
                     ? const Icon(Icons.dark_mode_outlined)
-                    : settingsController.isLight
+                    : themeMode == ThemeMode.light
                         ? const Icon(Icons.light_mode_outlined)
                         : const Icon(
                             Icons.system_security_update_good_outlined),
@@ -77,9 +88,10 @@ class DrawerMenu extends StatelessWidget {
                     : null,
                 title: const Text('Theme'),
                 trailing: DropdownButton<ThemeMode>(
-                  value: settingsController.themeMode,
+                  value: themeMode,
                   onChanged: settingsController.updateThemeMode,
                   isDense: true,
+                  underline: const SizedBox.shrink(),
                   items: const [
                     DropdownMenuItem(
                       value: ThemeMode.system,
@@ -97,6 +109,7 @@ class DrawerMenu extends StatelessWidget {
                 ),
               );
             },
+            selector: (context, c) => c.themeMode,
           ),
           divider,
         ],

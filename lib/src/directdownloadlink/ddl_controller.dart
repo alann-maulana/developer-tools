@@ -1,23 +1,21 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum Base64Mode { encode, decode }
+enum DDLMode { googleDrive }
 
-class Base64Controller extends ChangeNotifier {
-  Base64Controller() : _mode = Base64Mode.encode;
+class DDLController extends ChangeNotifier {
+  DDLController([DDLMode mode = DDLMode.googleDrive]) : _mode = mode;
 
   final TextEditingController inputController = TextEditingController();
   final TextEditingController outputController = TextEditingController();
 
   String? inputError;
 
-  Base64Mode _mode;
+  DDLMode _mode;
 
-  Base64Mode get mode => _mode;
+  DDLMode get mode => _mode;
 
-  set mode(Base64Mode value) {
+  set mode(DDLMode value) {
     if (value == mode) return;
 
     final input = inputController.text.toString();
@@ -44,31 +42,34 @@ class Base64Controller extends ChangeNotifier {
       return;
     }
 
-    String output;
+    final inputUri = Uri.tryParse(input);
+    String output = input;
     switch (mode) {
-      case Base64Mode.encode:
-        output = base64.encode(utf8.encode(input));
-        break;
-      case Base64Mode.decode:
-        if (input.length < 4) {
-          return;
-        }
-        try {
-          output = utf8.decode(base64.decode(input));
-        } catch (_) {
-          inputError = 'Invalid base64 string';
-          notifyListeners();
-          return;
+      case DDLMode.googleDrive:
+        if (inputUri != null) {
+          String? id;
+          for (final pathSegment in inputUri.pathSegments) {
+            if (id == null || pathSegment.length > id.length) {
+              id = pathSegment;
+            }
+          }
+
+          if (id != null) {
+            final outputUri = Uri.https(
+              'drive.google.com',
+              'uc',
+              <String, String>{
+                'export': 'download',
+                'id': id,
+              },
+            );
+            output = outputUri.toString();
+          }
         }
         break;
     }
     outputController.text = output;
     notifyListeners();
-  }
-
-  useAsInput() {
-    inputController.text = outputController.text;
-    onInputChanged(inputController.text);
   }
 
   onCopy() async {

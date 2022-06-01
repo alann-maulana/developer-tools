@@ -15,12 +15,14 @@ class JsonToDartController extends ChangeNotifier {
   bool _finalField = true;
 
   bool get privateField => _privateField;
+
   set privateField(bool value) {
     _privateField = value;
     onInputChanged(inputController.text);
   }
 
   bool get finalField => _finalField;
+
   set finalField(bool value) {
     _finalField = value;
     onInputChanged(inputController.text);
@@ -47,15 +49,16 @@ class JsonToDartController extends ChangeNotifier {
     }
 
     try {
-      final _ = json.decode(input);
+      json.decode(input);
     } catch (_) {
       inputError = 'Invalid json format';
       notifyListeners();
       return;
     }
 
-    final className =
-        classController.text.isEmpty ? 'UnknownClassName' : classController.text;
+    final className = classController.text.isEmpty
+        ? 'UnknownClassName'
+        : classController.text;
     final classGenerator = ModelGenerator(
       className,
       privateFields: privateField,

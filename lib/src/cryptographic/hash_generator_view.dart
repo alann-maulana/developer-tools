@@ -300,8 +300,8 @@ class _OutputTextField extends StatelessWidget {
         border: const OutlineInputBorder(),
         labelText: labelText,
         suffixIcon: InkWell(
-          child: const Icon(Icons.copy),
           onTap: onCopy,
+          child: const Icon(Icons.copy),
         ),
       ),
       readOnly: true,
