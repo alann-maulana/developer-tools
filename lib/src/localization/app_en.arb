@@ -23,7 +23,11 @@
   "@jsonToDartSideMenu": {
     "description": "Convert JSON to Dart classes"
   },
-  "googleDriveDDLSideMenu": "Direct Download Link Generator",
+  "headerDDLSideMenu": "DIRECT DOWNLOAD LINK GENERATOR",
+  "@headerDDLSideMenu": {
+    "description": "Generator to direct download link"
+  },
+  "googleDriveDDLSideMenu": "Google Drive",
   "@googleDriveDDLSideMenu": {
     "description": "Generate Google Drive link to direct download link"
   }

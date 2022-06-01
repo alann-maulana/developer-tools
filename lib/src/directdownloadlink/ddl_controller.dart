@@ -48,19 +48,36 @@ class DDLController extends ChangeNotifier {
       case DDLMode.googleDrive:
         if (inputUri != null) {
           String? id;
-          for (final pathSegment in inputUri.pathSegments) {
-            if (id == null || pathSegment.length > id.length) {
-              id = pathSegment;
-            }
-          }
 
-          if (id != null) {
+          final type = inputUri.pathSegments.first;
+          if (type == 'file') {
+            for (final pathSegment in inputUri.pathSegments) {
+              if (id == null || pathSegment.length > id.length) {
+                id = pathSegment;
+              }
+            }
+
+            if (id != null) {
+              final outputUri = Uri.https(
+                inputUri.authority,
+                'uc',
+                <String, String>{
+                  'export': 'download',
+                  'id': id,
+                },
+              );
+              output = outputUri.toString();
+            }
+          } else if (['document', 'presentation', 'spreadsheets']
+              .contains(type)) {
+            final newPath = List.from(inputUri.pathSegments);
+            newPath.removeLast();
+            newPath.add('export');
             final outputUri = Uri.https(
-              'drive.google.com',
-              'uc',
+              inputUri.authority,
+              newPath.join('/'),
               <String, String>{
-                'export': 'download',
-                'id': id,
+                'format': 'pdf',
               },
             );
             output = outputUri.toString();

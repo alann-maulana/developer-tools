@@ -61,12 +61,15 @@ class DrawerMenu extends StatelessWidget {
             },
           ),
           divider,
+          DrawerHeaderMenuTile(
+            title: AppLocalizations.of(context)!.headerDDLSideMenu,
+          ),
           DrawerMenuTile(
             leading: Icons.link_outlined,
             title: AppLocalizations.of(context)!.googleDriveDDLSideMenu,
-            selected: currentRouteName == GooglDriveView.route,
+            selected: currentRouteName == GoogleDriveView.route,
             onTap: () {
-              Navigator.pushNamed(context, GooglDriveView.route);
+              Navigator.pushNamed(context, GoogleDriveView.route);
             },
           ),
           divider,
@@ -168,6 +171,24 @@ class DrawerMenuTile extends StatelessWidget {
       subtitle: subtitle != null ? Text(subtitle!) : null,
       selected: selected,
       onTap: onTap,
+    );
+  }
+}
+
+class DrawerHeaderMenuTile extends StatelessWidget {
+  const DrawerHeaderMenuTile({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    final tileColor = isLight ? Colors.white : null;
+
+    return ListTile(
+      minLeadingWidth: 0,
+      tileColor: tileColor,
+      subtitle: Text(title),
     );
   }
 }

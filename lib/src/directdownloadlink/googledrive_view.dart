@@ -6,10 +6,10 @@ import 'package:flutter_native/flutter_native.dart';
 
 import 'ddl_controller.dart';
 
-class GooglDriveView extends StatelessWidget {
-  static const String route = 'direct-download-link-generator';
+class GoogleDriveView extends StatelessWidget {
+  static const String route = 'google-drive-direct-download-link-generator';
 
-  GooglDriveView({Key? key})
+  GoogleDriveView({Key? key})
       : controller = DDLController(),
         super(key: key);
 
@@ -78,12 +78,17 @@ class GooglDriveBody extends StatelessWidget {
             ListTile(
               contentPadding: padding,
               title: Text('''
-Make sure your file's visibility is set to "Anyone with the link". If it's set to "Restricted" then only people who are logged in and have been granted access to the file will be able to open the direct link (which probably isn't what you want).'''),
+Make sure your file's visibility is set to "Anyone with the link". '''),
             ),
             ListTile(
               contentPadding: padding,
               title: Text('''
-This only works for Google Drive, OneDrive and DropBox.'''),
+If it's set to "Restricted" then only people who are logged in and have been granted access to the file will be able to open the direct link (which probably isn't what you want).'''),
+            ),
+            ListTile(
+              contentPadding: padding,
+              title: Text('''
+It is support type : file, document, presentation and spreadsheets.'''),
             ),
           ];
 

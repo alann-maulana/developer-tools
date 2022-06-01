@@ -61,11 +61,11 @@ class AppRoutes {
               return json.JsonToDartView();
             });
         break;
-      case 'direct-download-link-generator':
+      case 'google-drive-direct-download-link-generator':
         builder = (context) => FutureBuilder(
             future: direct_link.loadLibrary(),
             builder: (context, snapshot) {
-              return direct_link.GooglDriveView();
+              return direct_link.GoogleDriveView();
             });
         break;
     }
