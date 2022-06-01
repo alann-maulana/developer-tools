@@ -7587,7 +7587,7 @@ yy(a){return A.aCh(new A.y0("Paste is not implemented for this browser."),null,t
 A.eA.prototype={
 gvn(a){var s=this.a
 s=s==null?null:J.aHZ(s)
-return s==null?"https://unpkg.com/canvaskit-wasm@0.33.0/bin/":s},
+return s==null?"https://dev.alan.my.id/developer-tools/canvaskit/":s},
 gvo(a){var s=this.a
 s=s==null?null:J.aI_(s)
 return s==null?!1:s},
