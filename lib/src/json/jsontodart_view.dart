@@ -4,8 +4,8 @@ import 'package:developer_tools/src/dashboard/drawer_menu.dart';
 import 'package:developer_tools/src/views/responsive_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_native/flutter_native.dart';
 
+import '../views/responsive_scaffold.dart';
 import 'jsontodart_controller.dart';
 
 class JsonToDartView extends StatelessWidget {
@@ -24,7 +24,7 @@ class JsonToDartView extends StatelessWidget {
       drawer: const DrawerMenu(),
       appBarElevation: 0,
       centerTitle: true,
-      body: JsonToDartBody(controller: controller),
+      body: (layout) => JsonToDartBody(controller: controller),
     );
   }
 }
@@ -131,8 +131,10 @@ class JsonToDartBody extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () async {
                     await controller.onCopy();
-                    ScaffoldMessenger.of(context).showSnackBar(
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Output copied')));
+                    }
                   },
                   label: const Text('Copy'),
                   icon: const Icon(Icons.copy),

@@ -2,8 +2,8 @@ import 'package:developer_tools/src/dashboard/drawer_menu.dart';
 import 'package:developer_tools/src/views/responsive_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_native/flutter_native.dart';
 
+import '../views/responsive_scaffold.dart';
 import 'hash_generator_controller.dart';
 
 class HashGeneratorView extends StatelessWidget {
@@ -22,7 +22,7 @@ class HashGeneratorView extends StatelessWidget {
       drawer: const DrawerMenu(),
       appBarElevation: 0,
       centerTitle: true,
-      body: HashGeneratorBody(controller: controller),
+      body: (layout) => HashGeneratorBody(controller: controller),
     );
   }
 }
@@ -105,8 +105,10 @@ class HashGeneratorBody extends StatelessWidget {
               labelText: 'MD5',
               onCopy: () async {
                 await controller.onCopy(controller.md5OutputController.text);
-                ScaffoldMessenger.of(context)
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context)
                     .showSnackBar(const SnackBar(content: Text('MD5 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -115,8 +117,10 @@ class HashGeneratorBody extends StatelessWidget {
               labelText: 'SHA-1',
               onCopy: () async {
                 await controller.onCopy(controller.sha1OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-1 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -125,8 +129,10 @@ class HashGeneratorBody extends StatelessWidget {
               labelText: 'SHA-224',
               onCopy: () async {
                 await controller.onCopy(controller.sha224OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-224 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -135,8 +141,10 @@ class HashGeneratorBody extends StatelessWidget {
               labelText: 'SHA-256',
               onCopy: () async {
                 await controller.onCopy(controller.sha256OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-256 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -145,8 +153,10 @@ class HashGeneratorBody extends StatelessWidget {
               labelText: 'SHA-384',
               onCopy: () async {
                 await controller.onCopy(controller.sha384OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-384 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -155,8 +165,10 @@ class HashGeneratorBody extends StatelessWidget {
               labelText: 'SHA-512',
               onCopy: () async {
                 await controller.onCopy(controller.sha512OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-512 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -166,8 +178,10 @@ class HashGeneratorBody extends StatelessWidget {
               onCopy: () async {
                 await controller
                     .onCopy(controller.sha512224OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-512/224 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -177,8 +191,10 @@ class HashGeneratorBody extends StatelessWidget {
               onCopy: () async {
                 await controller
                     .onCopy(controller.sha512256OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('SHA-512/256 copied')));
+                }
               },
             ),
             const SizedBox(height: 32),
@@ -201,8 +217,10 @@ class HashGeneratorBody extends StatelessWidget {
               onCopy: () async {
                 await controller
                     .onCopy(controller.hMacMd5OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('HMAC-MD5 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -212,8 +230,10 @@ class HashGeneratorBody extends StatelessWidget {
               onCopy: () async {
                 await controller
                     .onCopy(controller.hMacSha1OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('HMAC-SHA1 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -223,8 +243,10 @@ class HashGeneratorBody extends StatelessWidget {
               onCopy: () async {
                 await controller
                     .onCopy(controller.hMacSha256OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('HMAC-SHA256 copied')));
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -234,8 +256,10 @@ class HashGeneratorBody extends StatelessWidget {
               onCopy: () async {
                 await controller
                     .onCopy(controller.hMacSha512OutputController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('HMAC-SHA512 copied')));
+                }
               },
             ),
           ];

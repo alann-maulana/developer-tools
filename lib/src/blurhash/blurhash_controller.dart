@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:flutter/material.dart';

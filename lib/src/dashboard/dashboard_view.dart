@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_native/flutter_native.dart';
 
+import '../views/responsive_scaffold.dart';
 import 'drawer_menu.dart';
 
 class DashboardView extends StatelessWidget {
@@ -14,11 +14,11 @@ class DashboardView extends StatelessWidget {
       drawer: const DrawerMenu(),
       appBarElevation: 0,
       centerTitle: true,
-      body: Column(
+      body: (layout) => const Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           FlutterLogo(size: 96),
           SizedBox(height: 16),
           Text(

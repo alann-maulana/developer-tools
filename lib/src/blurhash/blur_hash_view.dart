@@ -1,9 +1,9 @@
 import 'package:developer_tools/src/views/responsive_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_native/flutter_native.dart';
 
 import '../dashboard/drawer_menu.dart';
+import '../views/responsive_scaffold.dart';
 import 'blurhash_controller.dart';
 
 class BlurHashView extends StatelessWidget {
@@ -22,7 +22,7 @@ class BlurHashView extends StatelessWidget {
       drawer: const DrawerMenu(),
       appBarElevation: 0,
       centerTitle: true,
-      body: BlurHashBody(controller: controller),
+      body: (layout) => BlurHashBody(controller: controller),
     );
   }
 }
@@ -118,8 +118,10 @@ class BlurHashBody extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () async {
                     await controller.onCopy();
-                    ScaffoldMessenger.of(context).showSnackBar(
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Output copied')));
+                    }
                   },
                   label: const Text('Copy'),
                   icon: const Icon(Icons.copy),

@@ -2,8 +2,8 @@ import 'package:developer_tools/src/dashboard/drawer_menu.dart';
 import 'package:developer_tools/src/views/responsive_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_native/flutter_native.dart';
 
+import '../views/responsive_scaffold.dart';
 import 'base64_controller.dart';
 
 class Base64View extends StatelessWidget {
@@ -22,7 +22,7 @@ class Base64View extends StatelessWidget {
       drawer: const DrawerMenu(),
       appBarElevation: 0,
       centerTitle: true,
-      body: Base64Body(controller: controller),
+      body: (layout) => Base64Body(controller: controller),
     );
   }
 }
@@ -105,8 +105,10 @@ class Base64Body extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () async {
                     await controller.onCopy();
-                    ScaffoldMessenger.of(context).showSnackBar(
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Output copied')));
+                    }
                   },
                   label: const Text('Copy'),
                   icon: const Icon(Icons.copy),

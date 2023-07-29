@@ -15,11 +15,8 @@ dependencies:
   blurhash_dart: ^1.0.2
   crypto: ^3.0.1
   flimer: ^1.0.1
-  flutter_native:
-    git:
-      url: https://github.com/eyro-labs/flutter_native
-      ref: null-safety
-  http: ^0.13.3
+  http: ^1.1.0
+  image: ^4.0.17
   json_to_dart:
     git:
       url: https://github.com/alann-maulana/json_to_dart
