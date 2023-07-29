@@ -19,10 +19,10 @@ jobs:
                   java-version: 1.8
             - uses: subosito/flutter-action@v1
               with:
-                  flutter-version: '3.0.1'
+                  flutter-version: '3.10.6'
                   channel: 'stable'
             - name: "Install flutter packages 🧩"
-              run: flutter packages get
+              run: flutter pub get
             - name: "Build flutter web 🛠"
               run: flutter build web --release --dart-define=FLUTTER_WEB_CANVASKIT_URL=https://dev.alan.my.id/developer-tools/canvaskit/ --base-href /developer-tools/ -v
             - name: "Deploy to gh-pages 🚀"
